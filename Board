@@ -1,0 +1,179 @@
+package sas.engine;
+
+import java.util.HashSet;
+import java.util.Random;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author i14007
+ */
+public class Board {
+    private Tile[][] tiles = new Tile[10][10];
+    private Player[] p = new Player[2];
+    private Snake[] snakes = new Snake[8];
+    private Stair[] stairs = new Stair[8];
+    private Player winner;
+
+    public Board(Player p1, Player p2) {
+        p[0] = p1;
+        p[1] = p2;
+        int count = 1;
+        boolean flag = false;
+        for(int i=tiles.length-1;i>=0;i--){
+            if(!flag){
+                for(int j=0;j<tiles[i].length;j++){
+                    tiles[i][j] = new Tile(count);
+                    count++;
+                }
+                flag = true;
+            }
+            else{
+                for(int j=tiles[i].length-1;j>=0;j--){
+                    tiles[i][j] = new Tile(count);
+                    count++;
+                }
+                flag = false;
+            }
+        }
+        Random rnd = new Random();
+        int randIndex[] = randomize(rnd);
+        int countSnake = 0;
+        int countStair = 0;
+        for(int i=0;i<16;i++){
+            if(i%2==0){
+                snakes[countSnake] = new Snake(randIndex[i+16],randIndex[i],countSnake);
+                for(int j=0;j<tiles.length;j++){
+                    for(int k=0;k<tiles[j].length;k++){
+                        if((tiles[j][k].getIndex()==snakes[countSnake].getTo())||(tiles[j][k].getIndex()==snakes[countSnake].getFrom())){
+                            tiles[j][k].setTele(snakes[countSnake]);
+                        }
+                    }
+                }
+                countSnake++;
+            }
+            else if(i%2==1){
+                stairs[countStair] = new Stair(randIndex[i],randIndex[i+16],countStair);
+                for(int j=0;j<tiles.length;j++){
+                    for(int k=0;k<tiles[j].length;k++){
+                        if((tiles[j][k].getIndex()==stairs[countStair].getTo())||(tiles[j][k].getIndex()==stairs[countStair].getFrom())){
+                            tiles[j][k].setTele(stairs[countStair]);
+                        }
+                    }
+                }
+                countStair++;
+            }
+        }
+    }
+
+    private int[] randomize(Random rnd) {
+        HashSet<Integer> set = new HashSet<>();
+        int[] random = new int[32];
+        int randomized = 0;
+        while (randomized < 32) {
+            int value = 1 + rnd.nextInt(99);
+            if (set.add(value)) {
+                random[randomized++] = value;
+            }
+        }
+        java.util.Arrays.sort(random);
+        return random;
+    }
+    
+    public Tile[][] getTiles() {
+        return tiles;
+    }
+
+    public Player[] getP() {
+        return p;
+    }
+    
+    public void play(){
+        boolean flag = false;
+        while(isStillPlayable()){
+            int i=0;
+            while((i<p.length)&&(isStillPlayable())){
+                
+                int plus = Dice.randomDice();
+                p[i].move(plus);
+                
+                if(p[i].getCurPosition()>100){
+                    int selisih = p[i].getCurPosition()-100;
+                    p[i].setCurPosition(100-selisih);
+                }
+                
+                Tile currentTile = null;
+                for(int j=0;j<tiles.length;j++){
+                    for(int k=0;k<tiles[j].length;k++){
+                        if(tiles[j][k].getIndex()==p[i].getCurPosition()){
+                            currentTile = tiles[j][k];
+                        }
+                    }
+                }
+                
+                p[i].setCurPosition(currentTile.teleport());
+                
+                this.print(p[i],plus);
+                
+                if(plus!=6){
+                    i++;
+                    flag = false;
+                }
+                else if(plus==6){
+                    if(flag==true){
+                        i++;
+                        flag = false;
+                    }
+                    else flag = true;
+                }
+            }
+        }
+        System.out.println(winner.getName()+" WIN!");
+    }
+    
+    public boolean isStillPlayable(){
+        if(p[0].getCurPosition()==100){
+            winner = p[0];
+            return false;
+        }
+        else if(p[1].getCurPosition()==100){
+            winner = p[1];
+            return false;
+        }
+        else return true;
+    }
+    
+    public void print(Player curP,int dice){
+        for(int i=0;i<this.tiles.length;i++){
+            
+            for(int j=0;j<this.tiles[i].length;j++){
+                
+                if(j==0)System.out.print("|");
+                System.out.printf("%4d",tiles[i][j].getIndex());
+                
+                for(int k=0;k<p.length;k++){
+                    if(this.tiles[i][j].getIndex()==p[k].getCurPosition())System.out.print(p[k].getSymbol());
+                    else System.out.print(" ");
+                }
+                
+                if(tiles[i][j].getTele()==null)System.out.print("  ");
+                else if(this.tiles[i][j].getTele().getClass().toString().substring(17,this.tiles[i][j].getTele().getClass().toString().length()).equals("Snake")){
+                    System.out.print("s"+this.tiles[i][j].getTele().getIdentifier());
+                }
+                else if(this.tiles[i][j].getTele().getClass().toString().substring(17,this.tiles[i][j].getTele().getClass().toString().length()).equals("Stair")){
+                    System.out.print("t"+this.tiles[i][j].getTele().getIdentifier());
+                }
+                System.out.print("|");
+                
+            }
+            
+            System.out.println("\n");
+        }
+        System.out.println(curP.getName()+" has rolled the dice and get "+dice+"\n");
+    }
+}
