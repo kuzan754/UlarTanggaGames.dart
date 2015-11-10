@@ -1,0 +1,41 @@
+package sas.engine;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author i14007
+ */
+public abstract class Player {
+    private int curPosition;
+    private String name;
+    private char symbol;
+
+    public Player(String name,char symbol) {
+        this.curPosition = 0;
+        this.name = name;
+        this.symbol = symbol;
+    }
+
+    public char getSymbol() {
+        return symbol;
+    }
+    
+    public int getCurPosition() {
+        return curPosition;
+    }
+
+    public void setCurPosition(int curPosition) {
+        this.curPosition = curPosition;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    public abstract void move(int plus);
+}
