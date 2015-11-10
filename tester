@@ -1,0 +1,63 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sas.tester;
+
+import java.util.Scanner;
+import sas.engine.Board;
+import sas.engine.ComputerPlayer;
+import sas.engine.HumanPlayer;
+import sas.engine.Player;
+
+/**
+ * 
+ * @author ADBO DART B
+ */
+public class Tester {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String nama,symbol;
+        
+        System.out.println("SNAKES AND STAIRS\n");
+        System.out.println("Hints : ");
+        System.out.println("1. Setiap petak pada papan permainan bisa terdapat ular, tangga, ataupun tidak keduanya.");
+        System.out.println("2. Ular ditandai dengan karakter \'s\' dan tangga ditandai dengan karakter \'t\'.");
+        System.out.println("3. Setiap ular dan tangga memindahkan player yang ada pada petak tersebut ke ular atau tangga yang memiliki indeks yang sama.");
+        System.out.println("4. Masukkan keyword \"auto\" sebagai nama player untuk bermain dengan komputer.");
+        System.out.println("5. Terdapat dua player, Player1 (x) dan Player2 (o).");
+        System.out.println("6. Pemain dapat melempar dadu dengan mengetik karakter \'r\' atau lainnya.");
+        System.out.println("7. Pemain yang mendapatkan nilai dadu sebesar 6 berhak untuk melempar dadu sekali lagi(maksimal dua kali melempar dadu).");
+        System.out.println("8. Ketik mulai untuk memulai permainan.\n");
+        String cmd;
+        while(!(cmd = sc.next()).equalsIgnoreCase("mulai")){
+            
+        }
+        
+        System.out.print("Masukkan Nama Player 1(x) : ");
+        nama = sc.next();
+        Player p1;
+        if(nama.equalsIgnoreCase("auto")){
+            p1 = new ComputerPlayer("CP1",'x');
+        }
+        else{
+            p1 = new HumanPlayer(nama,'x');
+        }
+        
+        System.out.print("Masukkan Nama Player 2(o) : ");
+        nama = sc.next();
+        Player p2;
+        if(nama.equalsIgnoreCase("auto")){
+            p2 = new ComputerPlayer("CP2",'o');
+        }
+        else{
+            p2 = new HumanPlayer(nama,'o');
+        }
+        
+        Board b = new Board(p1,p2);
+        System.out.println("START!\n");
+        b.play();
+    }
+}
