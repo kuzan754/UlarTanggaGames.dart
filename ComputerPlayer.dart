@@ -1,5 +1,5 @@
 class ComputerPlayer extends Player{
-    ComputerPlayer(String name,char symbol): super(name,symbol);
+    ComputerPlayer(String name,String symbol): super(name,symbol);
     
     
     @override
