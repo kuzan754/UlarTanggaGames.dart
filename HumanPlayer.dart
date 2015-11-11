@@ -7,7 +7,7 @@ package sas.engine;
 import 'dart:io';
 
 class HumanPlayer extends Player{
-     HumanPlayer(String name,char symbol) : super(name,symbol);
+     HumanPlayer(String name,String symbol) : super(name,symbol);
     
     @override
      void move(int input){
