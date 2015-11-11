@@ -7,9 +7,9 @@ package sas.engine;
  abstract class Player {
     int _curPosition;
     String _name;
-    char _symbol;
+    String _symbol;
 
-    Player(String name,char symbol) {
+    Player(String name,String symbol) {
         this._curPosition = 0;
         this._name = name;
         this._symbol = symbol;
