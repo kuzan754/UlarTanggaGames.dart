@@ -4,16 +4,14 @@ package sas.engine;
  *
  * @author i14058
  */
-public class HumanPlayer extends Player{
-    java.util.Scanner sc = new java.util.Scanner(System.in);
+import 'dart:io';
+
+class HumanPlayer extends Player{
+     HumanPlayer(String name,char symbol) : super(name,symbol);
     
-    HumanPlayer(String name,char symbol) {
-        super(_name,_symbol);
-    }
-    
-    @Override
-    void move(int input){
-        String indicator = sc.next();
+    @override
+     void move(int input){
+        String indicator = stdin.nextLine();
         this.setCurPosition(this.getCurPosition()+input);
     }
 }
