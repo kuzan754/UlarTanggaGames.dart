@@ -15,7 +15,7 @@ package sas.engine;
         this._symbol = symbol;
     }
 
-    char getSymbol() {
+    String getSymbol() {
         return _symbol;
     }
     
@@ -31,5 +31,5 @@ package sas.engine;
         return _name;
     }
     
-    abstract void move(int plus);
+    void move(int plus);
 }
