@@ -10,32 +10,32 @@ package sas.engine;
  *
  * @author i14007
  */
-public abstract class Player {
-    private int curPosition;
-    private String name;
-    private char symbol;
+ abstract class Player {
+    int _curPosition;
+    String _name;
+    char _symbol;
 
-    public Player(String name,char symbol) {
-        this.curPosition = 0;
-        this.name = name;
-        this.symbol = symbol;
+    Player(String name,char symbol) {
+        this._curPosition = 0;
+        this._name = name;
+        this._symbol = symbol;
     }
 
-    public char getSymbol() {
-        return symbol;
+    char getSymbol() {
+        return _symbol;
     }
     
-    public int getCurPosition() {
-        return curPosition;
+    int getCurPosition() {
+        return _curPosition;
     }
 
-    public void setCurPosition(int curPosition) {
-        this.curPosition = curPosition;
+    void setCurPosition(int curPosition) {
+        this._curPosition = curPosition;
     }
 
-    public String getName() {
-        return name;
+    String getName() {
+        return _name;
     }
     
-    public abstract void move(int plus);
+    abstract void move(int plus);
 }
