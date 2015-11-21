@@ -96,23 +96,32 @@ class Stair extends Teleporter{
     /// [to] merupakan nilai akhir atau titik akhir tangga.
     Stair(int from, int to,int identifier) : super(from, to, identifier);
 }
-
+/// Kelas Player adalah kelas yang mendefinisikan seorang player
+/// Kelas player bersifat abstract karena merupakan kelas induk dari kelas HumanPlayer dan ComputerPlayer
 abstract class Player {
 	
+/// atribut curPosition bersifat private
     int _curPosition;
+/// atribut name bersifat private
     String _name;
+/// atribut symbol bersifat private
     String _symbol;
-
+    
+/// Constructor dari kelas Player
+/// Constructor Player memiliki 2 parameter, yaitu String name dan String symbol
+/// Constructor berfungsi mendefinisikan ulang atribut
     Player(String name,String symbol) {
         this._curPosition = 0;
         this._name = name;
         this._symbol = symbol;
     }
-
+    
+/// Method getSymbol mengembalikan symbol/icon dari pemain
     String getSymbol() {
         return this._symbol;
     }
     
+/// Method getCurPosition    
     int getCurPosition() {
         return this._curPosition;
     }
