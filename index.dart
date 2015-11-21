@@ -142,7 +142,21 @@ class Board {
     List<Snake> _snakes = new List<Snake>();//array
     List<Stair> _stairs = new List<Stair>();//array
     Player _winner;
-
+  	
+  	Board.copy(Player p1, Player p2, Board oldB){
+      	this._p.add(p1);
+      	this._p.add(p2);
+      	querySelector("#fPlayer").text = querySelector("#fPlayer").text.substring(0,13)+" "+_p[0].getName();
+      	querySelector("#sPlayer").text = querySelector("#sPlayer").text.substring(0,14)+" "+_p[1].getName();
+      	querySelector("#posP1").text = querySelector("#posP1").text.substring(0,9)+" "+_p[0].getCurPosition().toString();
+      	querySelector("#posP2").text = querySelector("#posP2").text.substring(0,9)+" "+_p[1].getCurPosition().toString();
+      	this._tiles = oldB.getTiles();
+      	this._boardId = oldB.getId();
+      	this._snakes = oldB.getSnakes();
+      	this._stairs = oldB.getStairs();
+      	this._winner = oldB.getWinner();
+    }
+  
     Board(Player p1, Player p2) {
       	//inisialisasi id
       	for(int i=1;i<=100;i++){
@@ -202,6 +216,18 @@ class Board {
     
     List<Tile> getTiles() {
         return _tiles;
+    }
+  
+  	List<Snake> getSnakes(){
+      	return this._snakes;
+    }
+  
+  	List<Stair> getStairs(){
+      	return this._stairs;
+    }
+  
+  	Player getWinner(){
+      	return this._winner;
     }
   
   	List<String> getId(){
@@ -276,11 +302,11 @@ class Board {
 }
 
 void main(){
-  Board b;
+  Board b = new Board(new HumanPlayer("",'o'),new HumanPlayer("",'x'));
   querySelector('#startButton').onClick.listen((_) => b=start(b));
   int turn = 0;
-  querySelector("#cur").text = querySelector("#cur").text.substring(0,14)+" "+b.getP()[turn].getName();
-  querySelector('#rollButton').onClick.listen((_) => turn = helper(b,turn));
+  if(b!=null)querySelector("#cur").text = querySelector("#cur").text.substring(0,14)+" "+b.getP()[turn].getName();
+  if(b!=null)querySelector('#rollButton').onClick.listen((_) => turn = helper(b,turn));
 }
 
 Board start(Board b){
@@ -304,9 +330,11 @@ Board start(Board b){
   else{
     p2 = new HumanPlayer(namaP2,'o');
   }
-	b = new Board(p1,p2);
+	b = new Board.copy(p1,p2,b);
   if(cvc==true){
     b.play();
+    if(b.getP()[0].getCurPosition()>0)querySelector(b.getId()[b.getP()[0].getCurPosition()-1]).text = "o";
+  	if(b.getP()[1].getCurPosition()>0)querySelector(b.getId()[b.getP()[1].getCurPosition()-1]).text = "x";
     querySelector('#rollButton').remove();
   }
   querySelector('#startButton').remove();
