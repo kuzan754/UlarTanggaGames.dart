@@ -43,8 +43,11 @@ class Tile {
     }
 }
 
+/// Kelas Dice merupakan dadu yang digunakan pada permainan ular tangga
 class Dice {
 	
+    /// Method ini merupakan method static yang akan menangani nilai random yang keluar
+    /// dari dadu yang akan digunakan untuk menjalankan langkah sebuah pion
     static int randomDice(){
         Random rnd = new Random();
         return 1 + rnd.nextInt(6);
