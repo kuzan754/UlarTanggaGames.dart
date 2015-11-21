@@ -5,7 +5,7 @@ import 'dart:html';
 class Tile {
 
     int _index;
-  	String _id;
+    String _id;
     Teleporter _tele;
     
     Tile(int index,String id){
@@ -25,11 +25,11 @@ class Tile {
         return this._index;
     }
   
-  	String getId(){
+    String getId(){
       	return this._id;
     }
   
-  	void setId(String id){
+    void setId(String id){
       	this._id = id;
     }
     
@@ -38,12 +38,13 @@ class Tile {
             return this._tele.getTo();
         }
         else{ 
-          	return this._index;
+            return this._index;
         }
     }
 }
 
 class Dice {
+	
     static int randomDice(){
         Random rnd = new Random();
         return 1 + rnd.nextInt(6);
@@ -74,15 +75,30 @@ abstract class Teleporter {
     }
 }
 
+/// Kelas Snake yang merupakan turunan kelas Teleporter.
+/// Kelas yang digunakan sebagai ular pada Game Ular Tangga.
 class Snake extends Teleporter{
+    
+    /// Constructor dari kelas Snake.
+    /// COnstructor kelas Snake memanggil Constructor Kelas Teleporter(Super Classnya).
+    /// [from] merupakan nilai awal atau Kepala Ular.
+    /// [to] merupakan nilai akhir atau Ekor Ular.
     Snake(int from, int to,int identifier) : super(from, to,identifier);
 }
 
+/// Kelas Stair yang merupakan turunan kelas Teleporter.
+/// Kelas yang digunakan sebagai Tangga pada Game Ular Tangga.
 class Stair extends Teleporter{
+    
+    /// Constructor dari kelas Stair.
+    /// Constructor kelas Stair memanggil Constructor Kelas Teleporter(Super Classnya).
+    /// [from] merupakan nilai awal atau titik awal tangga.
+    /// [to] merupakan nilai akhir atau titik akhir tangga.
     Stair(int from, int to,int identifier) : super(from, to, identifier);
 }
 
 abstract class Player {
+	
     int _curPosition;
     String _name;
     String _symbol;
@@ -117,6 +133,7 @@ abstract class Player {
 }
 
 class HumanPlayer extends Player{
+	
      HumanPlayer(String name,String symbol) : super(name,symbol);
     
     @override
@@ -136,8 +153,9 @@ class ComputerPlayer extends Player{
 }
 
 class Board {
+	
     List<Tile> _tiles = new List<Tile>();//array
-  	List<String> _boardId = new List<String>();
+    List<String> _boardId = new List<String>();
     List<Player> _p = new List<Player>();//array
     List<Snake> _snakes = new List<Snake>();//array
     List<Stair> _stairs = new List<Stair>();//array
@@ -158,7 +176,7 @@ class Board {
     }
   
     Board(Player p1, Player p2) {
-      	//inisialisasi id
+      	///inisialisasi id
       	for(int i=1;i<=100;i++){
           _boardId.add('#t'+i.toString());
         }
@@ -185,13 +203,13 @@ class Board {
               	querySelector(this._tiles[this._snakes[countSnake].getFrom()-1].getId()).style.backgroundImage = 'url(https://media.giphy.com/media/113681pulhNN1m/giphy.gif)';
               	querySelector(this._tiles[this._snakes[countSnake].getFrom()-1].getId()).style.backgroundSize = 'cover';
                 countSnake++;
-        		}
+            }
             else if(i%2==1){
                 _stairs.add(new Stair(randIndex[i],randIndex[i+16],countStair));
               	this._tiles[this._stairs[countStair].getFrom()-1].setTele(this._stairs[countStair]);
               	querySelector(this._tiles[this._stairs[countStair].getFrom()-1].getId()).style.backgroundImage = 'url(http://quintessentialpublications.com/twyman/wp-content/uploads/TrippyTrance.gif)';
               	querySelector(this._tiles[this._stairs[countStair].getFrom()-1].getId()).style.backgroundSize = 'cover';
-             		this._tiles[this._stairs[countStair].getTo()-1].setTele(this._stairs[countStair]);
+             	this._tiles[this._stairs[countStair].getTo()-1].setTele(this._stairs[countStair]);
               	querySelector(this._tiles[this._stairs[countStair].getTo()-1].getId()).style.backgroundImage = 'url(http://quintessentialpublications.com/twyman/wp-content/uploads/TrippyTrance.gif)';
               	querySelector(this._tiles[this._stairs[countStair].getTo()-1].getId()).style.backgroundSize = 'cover';
                 countStair++;
@@ -218,37 +236,37 @@ class Board {
         return _tiles;
     }
   
-  	List<Snake> getSnakes(){
+    List<Snake> getSnakes(){
       	return this._snakes;
     }
   
-  	List<Stair> getStairs(){
+    List<Stair> getStairs(){
       	return this._stairs;
     }
   
-  	Player getWinner(){
+    Player getWinner(){
       	return this._winner;
     }
   
-  	List<String> getId(){
-      return this._boardId;
+    List<String> getId(){
+        return this._boardId;
     }
 
     List<Player> getP() {
         return _p;
     }
     
-  	bool movePlayer(int turn){
+    bool movePlayer(int turn){
       int plus = Dice.randomDice();
       int curPos = this._p[turn].getCurPosition()+plus;
       if(curPos>100){
-        int selisih = curPos-100;
-        curPos = 100-selisih;
+         int selisih = curPos-100;
+         curPos = 100-selisih;
       }
       querySelector("#diceValue").text = querySelector("#diceValue").text.substring(0,11)+" "+plus.toString(); this._p[turn].move((curPos),turn);
       if(this._p[turn].setCurPosition((this._tiles[curPos-1].teleport()),turn)==true)querySelector('#rollButton').remove();
       if(plus==6){
-        return true;
+         return true;
       }
       else return false;
     }
@@ -302,37 +320,37 @@ class Board {
 }
 
 void main(){
-  Board b = new Board(new HumanPlayer("",'o'),new HumanPlayer("",'x'));
-  querySelector('#startButton').onClick.listen((_) => b=start(b));
-  int turn = 0;
-  if(b!=null)querySelector("#cur").text = querySelector("#cur").text.substring(0,14)+" "+b.getP()[turn].getName();
-  if(b!=null)querySelector('#rollButton').onClick.listen((_) => turn = helper(b,turn));
+   Board b = new Board(new HumanPlayer("",'o'),new HumanPlayer("",'x'));
+   querySelector('#startButton').onClick.listen((_) => b=start(b));
+   int turn = 0;
+   if(b!=null)querySelector("#cur").text = querySelector("#cur").text.substring(0,14)+" "+b.getP()[turn].getName();
+   if(b!=null)querySelector('#rollButton').onClick.listen((_) => turn = helper(b,turn));
 }
 
 Board start(Board b){
-  bool cvc = false;
-  Player p1;
-  InputElement pa = querySelector("#inputP1");
-  InputElement pb = querySelector("#inputP2");
-  String namaP1 = pa.value;
-  String namaP2 = pb.value;
-  if(namaP1=="auto"){
-    p1 = new ComputerPlayer("CP1",'x');
-    cvc = true;
+   bool cvc = false;
+   Player p1;
+   InputElement pa = querySelector("#inputP1");
+   InputElement pb = querySelector("#inputP2");
+   String namaP1 = pa.value;
+   String namaP2 = pb.value;
+   if(namaP1=="auto"){
+      p1 = new ComputerPlayer("CP1",'x');
+      cvc = true;
   }
   else{
-    p1 = new HumanPlayer(namaP1,'x');
+      p1 = new HumanPlayer(namaP1,'x');
   }
   Player p2;
   if(namaP2=="auto"){
-    p2 = new ComputerPlayer("CP2",'o');
+      p2 = new ComputerPlayer("CP2",'o');
   }
   else{
-    p2 = new HumanPlayer(namaP2,'o');
+      p2 = new HumanPlayer(namaP2,'o');
   }
-	b = new Board.copy(p1,p2,b);
+  b = new Board.copy(p1,p2,b);
   if(cvc==true){
-    b.play();
+      b.play();
     if(b.getP()[0].getCurPosition()>0)querySelector(b.getId()[b.getP()[0].getCurPosition()-1]).text = "o";
   	if(b.getP()[1].getCurPosition()>0)querySelector(b.getId()[b.getP()[1].getCurPosition()-1]).text = "x";
     querySelector('#rollButton').remove();
