@@ -2,17 +2,25 @@ import 'dart:math';
 import 'dart:collection';
 import 'dart:html';
 
+/// Kelas ini merupakan kelas yang mempresentasikan sebuah tile yang ada pada board permainan
+/// ular tangga.
 class Tile {
 
+    /// Atribut ini digunakan untuk index
     int _index;
     String _id;
     Teleporter _tele;
     
+    /// Constructor dari kelas Tile
+    /// Constructor kelas Tile digunakan untuk mendapatkan nilai atribut index dan id yang diisi dari tester
+    /// [index] merupakan nilai index
+    /// [id] merupakan 
     Tile(int index,String id){
         this._index = index;
       	this._id = id;
     }
 
+	
     Teleporter getTele() {
         return _tele;
     }
@@ -21,14 +29,18 @@ class Tile {
         this._tele = tele;
     }
     
+    /// Method ini digunakan untuk mendapatkan nilai index 
     int getIndex(){
         return this._index;
     }
   
+    /// Method ini digunakan untuk mendapatkan string dari id
     String getId(){
       	return this._id;
     }
   
+    /// Method ini digunakan untuk memberikan nilai dari atribut id menjadi seperti nilai id yang ada di parameter.
+    /// [id] merupakan id yang diset dari tester
     void setId(String id){
       	this._id = id;
     }
