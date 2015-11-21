@@ -1,0 +1,227 @@
+<html>
+	<head>
+		<link rel="shortcut icon" type="image/x-icon" href="Blackvariant-Button-Ui-Requests-13-Snake.ico" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<title>Snakes and Ladders
+		</title>
+		<style type="text/css"> 
+			td{height:70px; width:80px; line-height:10px;}
+		</style>
+	</head>
+	<body>
+    
+		<style>
+		  body { 
+			background: url(http://www.historias-infantis.com/wp-content/uploads/2014/04/8aaf4df7283dd296c59fdb47fc2033fa.jpg)no-repeat center fixed;
+			background-size:cover;
+		  }
+
+		  #gameTable {
+			top: 100px;
+			margin-left: 350px;
+			text-align: center;
+			color: Blue;
+			font-weight: bold;
+			font-size: 15px;
+			background:url(http://p1.pichost.me/i/3/1263316.jpg);
+			background-size:cover;
+			position: absolute;
+		  }
+		  
+		  #gameInfo {
+			top: 100px;
+			margin-left: 1200px;
+			text-align: center;
+			background:url(http://www.hapehatelo.com/wp-content/uploads/2015/10/abstract-wallpaper-luxury-background.jpg);
+			background-size:cover;
+			color: White;
+			width: 300px;
+			position: absolute;
+		  }
+		  
+      #inputP1{
+        margin-top:40px;
+      }
+		</style>
+		
+    <CENTER>
+      <div id="input">
+      <input type="text" id="inputP1"></input>
+    	<input type="text" id="inputP2"></input>
+  		<button id="startButton" class="btn btn-danger" type="submit">Start</button>
+    	</div>
+  	</CENTER>
+    
+		<table id="gameTable" align="left" cellpadding="0" cellspacing="0" border="1">
+		
+			<tr>
+				<td id="t100">&nbsp;</td>
+				<td id="t99">&nbsp;</td>
+				<td id="t98">&nbsp;</td>
+				<td id="t97">&nbsp;</td>
+				<td id="t96">&nbsp;</td>
+				<td id="t95">&nbsp;</td>
+				<td id="t94">&nbsp;</td>
+				<td id="t93">&nbsp;</td>
+				<td id="t92">&nbsp;</td>
+				<td id="t91">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td id="t81">&nbsp;</td>
+				<td id="t82">&nbsp;</td>
+				<td id="t83">&nbsp;</td>
+				<td id="t84">&nbsp;</td>
+				<td id="t85">&nbsp;</td>
+				<td id="t86">&nbsp;</td>
+				<td id="t87">&nbsp;</td>
+				<td id="t88">&nbsp;</td>
+				<td id="t89">&nbsp;</td>
+				<td id="t90">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td id="t80">&nbsp;</td>
+				<td id="t79">&nbsp;</td>
+				<td id="t78">&nbsp;</td>
+				<td id="t77">&nbsp;</td>
+				<td id="t76">&nbsp;</td>
+				<td id="t75">&nbsp;</td>
+				<td id="t74">&nbsp;</td>
+				<td id="t73">&nbsp;</td>
+				<td id="t72">&nbsp;</td>
+				<td id="t71">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td id="t61">&nbsp;</td>
+				<td id="t62">&nbsp;</td>
+				<td id="t63">&nbsp;</td>
+				<td id="t64">&nbsp;</td>
+				<td id="t65">&nbsp;</td>
+				<td id="t66">&nbsp;</td>
+				<td id="t67">&nbsp;</td>
+				<td id="t68">&nbsp;</td>
+				<td id="t69">&nbsp;</td>
+				<td id="t70">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td id="t60">&nbsp;</td>
+				<td id="t59">&nbsp;</td>
+				<td id="t58">&nbsp;</td>
+				<td id="t57">&nbsp;</td>
+				<td id="t56">&nbsp;</td>
+				<td id="t55">&nbsp;</td>
+				<td id="t54">&nbsp;</td>
+				<td id="t53">&nbsp;</td>
+				<td id="t52">&nbsp;</td>
+				<td id="t51">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td id="t41">&nbsp;</td>
+				<td id="t42">&nbsp;</td>
+				<td id="t43">&nbsp;</td>
+				<td id="t44">&nbsp;</td>
+				<td id="t45">&nbsp;</td>
+				<td id="t46">&nbsp;</td>
+				<td id="t47">&nbsp;</td>
+				<td id="t48">&nbsp;</td>
+				<td id="t49">&nbsp;</td>
+				<td id="t50">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td id="t40">&nbsp;</td>
+				<td id="t39">&nbsp;</td>
+				<td id="t38">&nbsp;</td>
+				<td id="t37">&nbsp;</td>
+				<td id="t36">&nbsp;</td>
+				<td id="t35">&nbsp;</td>
+				<td id="t34">&nbsp;</td>
+				<td id="t33">&nbsp;</td>
+				<td id="t32">&nbsp;</td>
+				<td id="t31">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td id="t21">&nbsp;</td>
+				<td id="t22">&nbsp;</td>
+				<td id="t23">&nbsp;</td>
+				<td id="t24">&nbsp;</td>
+				<td id="t25">&nbsp;</td>
+				<td id="t26">&nbsp;</td>
+				<td id="t27">&nbsp;</td>
+				<td id="t28">&nbsp;</td>
+				<td id="t29">&nbsp;</td>
+				<td id="t30">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td id="t20">&nbsp;</td>
+				<td id="t19">&nbsp;</td>
+				<td id="t18">&nbsp;</td>
+				<td id="t17">&nbsp;</td>
+				<td id="t16">&nbsp;</td>
+				<td id="t15">&nbsp;</td>
+				<td id="t14">&nbsp;</td>
+				<td id="t13">&nbsp;</td>
+				<td id="t12">&nbsp;</td>
+				<td id="t11">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td id="t1">&nbsp;</td>
+				<td id="t2">&nbsp;</td>
+				<td id="t3">&nbsp;</td>
+				<td id="t4">&nbsp;</td>
+				<td id="t5">&nbsp;</td>
+				<td id="t6">&nbsp;</td>
+				<td id="t7">&nbsp;</td>
+				<td id="t8">&nbsp;</td>
+				<td id="t9">&nbsp;</td>
+				<td id="t10">&nbsp;</td>
+			</tr>
+		
+		</table>
+		
+		<table id="gameInfo" align="center" cellpadding="0" cellspacing="0" border="1">
+		
+			<tr>
+				<td id="fPlayer">First Player: &nbsp;</td>
+			</tr>
+			<tr>
+				<td id="posP1">Position: &nbsp;</td>
+			</tr>
+			<tr>
+				<td id="sPlayer">Second Player: &nbsp;</td>
+			</tr>
+			<tr>
+				<td id="posP2">Position: &nbsp;</td>
+			</tr> 
+			<tr>
+				<td id="cur">Current turn:  &nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			  <tr>
+				<td id="diceValue">Dice Value:  &nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><button id="rollButton" class="btn btn-danger" type="submit">Roll</button>&nbsp;</td>
+			</tr>
+			  <tr>
+				<td id ="winner">&nbsp;</td>
+			</tr>
+			
+		</table>
+
+	</body>
+</html>
+
