@@ -122,41 +122,41 @@ class Stair extends Teleporter{
 }
 
 /// Kelas Player mendefinisikan pemain.
-/// Kelas Player merupakan induk dari kelas HumanPlayer dan ComputerPlayer
+/// Kelas Player merupakan induk dari kelas HumanPlayer dan ComputerPlayer.
 /// Kelas Player merupakan kelas absract.
 abstract class Player {
-    /// Atribut curPosition tipe integer bersifat private	
+    /// Atribut curPosition tipe integer bersifat private.	
     int _curPosition;
-    /// Atribut name tipe String bersifat private
+    /// Atribut name tipe String bersifat private.
     String _name;
-    /// Atribut symbol tipe String bersifat private
+    /// Atribut symbol tipe String bersifat private.
     String _symbol;
 
-/// Constructor kelas Player memiliki parameter String name dan String symbol
-/// Constructor kelas Player berfungsi untuk mengisi value baru kepada atribut-atributnya
+/// Constructor kelas Player memiliki parameter String name dan String symbol.
+/// Constructor kelas Player berfungsi untuk mengisi value baru kepada atribut-atributnya.
     Player(String name,String symbol) {
         this._curPosition = 0;
         this._name = name;
         this._symbol = symbol;
     }
 
-/// Method getSymbol tipe String tidak memiliki parameter
-/// Method getSymbol memiliki return value String
-/// Method berfungsi untuk mengembalikan value player berupa simbol/icon
+/// Method getSymbol tipe String tidak memiliki parameter.
+/// Method getSymbol memiliki return value String.
+/// Method berfungsi untuk mengembalikan value player berupa simbol/icon.
     String getSymbol() {
         return this._symbol;
     }
     
-/// Method getCurPosition tipe int tidak memiliki parameter
-/// Method getCurPosition memiliki return value int
-/// Method berfungsi untuk mengembalikan value player berupa dimana posisi terakhir setelang melangkah
+/// Method getCurPosition tipe int tidak memiliki parameter.
+/// Method getCurPosition memiliki return value int.
+/// Method berfungsi untuk mengembalikan value player berupa dimana posisi terakhir setelang melangkah.
     int getCurPosition() {
         return this._curPosition;
     }
 
 /// Method setCurPosition tipe bool memiliki parameter int curPosition dan int turn.
 /// Method setCurPosition memiliki return value berupa true/false.
-
+/// Method ini akan dipanggil di kelas games.html.
     bool setCurPosition(int curPosition, int turn) {
         this._curPosition = curPosition;
       	if(turn==0)querySelector("#posP1").text = querySelector("#posP1").text.substring(0,9)+" "+this.getCurPosition().toString();
@@ -164,34 +164,51 @@ abstract class Player {
       	if(this._curPosition==100)return true;
       	return false;
     }
-
+    
+/// Method getName tipe String tidak memiliki parameter.
+/// Method getName memiliki return value String.
+/// Method berfungsi sebagai pengenal nama player.
     String getName() {
         return _name;
     }
     
+/// Method move tipe void memiliki parameter int plus dan int turn.  
+/// Method move merupakan method abstract. 
     void move(int plus,int turn);
 }
 
+/// Kelas HumanPlayer merupakan kelas yang mendefinisikan player adalah manusia. 
+/// Kelas HumanPlayer merupakan turunan dari kelas Player.
 class HumanPlayer extends Player{
 	
+     /// Constructor kelas HumanPlayer memiliki parameter yang sama dengan induk kelasnya.	
      HumanPlayer(String name,String symbol) : super(name,symbol);
-    
+     
+     /// Method move merupakan method override dari kelas Player.
+     /// Method move meiliki parameter yang sama dengan method move pada kelas Player.
     @override
     void move(int input,int turn){
         if(this.setCurPosition((this.getCurPosition()+input),turn)==true)querySelector('#rollButton').remove();
     }
 }
 
+/// Kelas ComputerPlayer merupakan kelas yang mendefinisikan player adalah komputer. 
+/// Kelas ComputerPlayer merupakan turunan dari kelas Player.
 class ComputerPlayer extends Player{
+	
+    /// Constructor kelas HumanPlayer memiliki parameter yang sama dengan induk kelasnya.
     ComputerPlayer(String name,String symbol): super(name,symbol);
     
-    
+    /// Method move merupakan method override dari kelas Player.
+    /// Method move meiliki parameter yang sama dengan method move pada kelas Player.
     @override
     void move(int input,int turn){
         this.setCurPosition((this.getCurPosition()+input),turn);
     }
 }
 
+/// Kelas Board mendefinisikan tempat atau map dari permainan Snakes and Strairs.
+/// Kelas Board merupakan kelas yang menjadi tempat penggabungan semua kelas.
 class Board {
 	
     List<Tile> _tiles = new List<Tile>();//array
