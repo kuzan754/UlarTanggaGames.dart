@@ -107,6 +107,7 @@ class Snake extends Teleporter{
     /// COnstructor kelas Snake memanggil Constructor Kelas Teleporter(Super Classnya).
     /// [from] merupakan nilai awal atau Kepala Ular.
     /// [to] merupakan nilai akhir atau Ekor Ular.
+    /// [identifier] sebuah integer untuk mengetahui ular tersebut nomor berapa(Ular ke berapa dari jumlah yang ada);
     Snake(int from, int to,int identifier) : super(from, to,identifier);
 }
 
@@ -118,6 +119,7 @@ class Stair extends Teleporter{
     /// Constructor kelas Stair memanggil Constructor Kelas Teleporter(Super Classnya).
     /// [from] merupakan nilai awal atau titik awal tangga.
     /// [to] merupakan nilai akhir atau titik akhir tangga.
+    /// [identifier] sebuah integer untuk mengetahui tangga tersebut nomor berapa(Tangga ke berapa dari jumlah yang ada);
     Stair(int from, int to,int identifier) : super(from, to, identifier);
 }
 
