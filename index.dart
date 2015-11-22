@@ -6,9 +6,13 @@ import 'dart:html';
 /// ular tangga.
 class Tile {
 
-    /// Atribut ini digunakan untuk index
+    /// Atribut yang bersifat private ini digunakan untuk index
     int _index;
+    
+    /// Atribut yang bersifat private ini digunakan untuk id
     String _id;
+    
+    /// Atribut yang bersifat private ini digunakan untuk memindahkan pemain ketika menemukan ular / tangga.
     Teleporter _tele;
     
     /// Constructor dari kelas Tile
@@ -20,11 +24,12 @@ class Tile {
       	this._id = id;
     }
 
-	
+    /// Method ini digunakan untuk mendapatkan nilai dari atribut _tele	
     Teleporter getTele() {
         return _tele;
     }
 
+    /// Method ini digunakan untuk memberikan nilai atribut _tele yang diset dari parameter
     void setTele(Teleporter tele) {
         this._tele = tele;
     }
@@ -45,6 +50,10 @@ class Tile {
       	this._id = id;
     }
     
+    /// Method ini digunakan untuk menteleportasi pemain ketika pemain menemukan
+    /// ular / tangga, sehingga pemain menjadi berpindah tempat
+    /// return tempat setelah diteleportasi jika atribut _tele bernilai tidak null
+    /// return index pemain jika atribut _tele bernilai null
     int teleport(){
         if(this._tele != null){
             return this._tele.getTo();
