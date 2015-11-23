@@ -227,14 +227,22 @@ class ComputerPlayer extends Player{
 /// Kelas Board mendefinisikan tempat atau map dari permainan Snakes and Strairs.
 /// Kelas Board merupakan kelas yang menjadi tempat penggabungan semua kelas.
 class Board {
-	
+    ///atribut array yang bertipe tile yang berguna untuk mensimulasikan board
     List<Tile> _tiles = new List<Tile>();//array
+    ///atribut array bertipe string yang berguna untuk menghubungkan tile yang ada dalam board dengan tampilan yang ada di html
     List<String> _boardId = new List<String>();
+    ///array bertipe player yang berguna untuk menyimpan player yang akan main
     List<Player> _p = new List<Player>();//array
+    ///array bertipe snake yang berguna untuk menyimpan posisi ular-ular di papan
     List<Snake> _snakes = new List<Snake>();//array
+    ///array bertipe stair yang berguna untuk menyimpan posisi tangga-tangga di papan
     List<Stair> _stairs = new List<Stair>();//array
     Player _winner;
-  	
+    
+    ///konstrukter kedua
+    ///[p1] parameter bertipe Player sebagai player 1.
+    ///[p2] parameter bertipe Player sebagai player 2.
+    ///[oldB] parameter bertipe Board
     Board.copy(Player p1, Player p2, Board oldB){
       	this._p.add(p1);
       	this._p.add(p2);
@@ -293,7 +301,7 @@ class Board {
             }
        }
     }
-
+    ///method ini berguna untuk merandom penempatan stair atau snake
     List<int> _randomize(Random rnd) {
         HashSet<int> set = new HashSet<int>();
         List<int> random = new List<int>();//32
@@ -339,6 +347,8 @@ class Board {
         return _p;
     }
     
+    ///method ini berguna untuk menggerakan player dari tempat sebelumnya ke tempat yang dituju sesuai besar angka dadu
+    ///[turn] parameter bertipe int
     bool movePlayer(int turn){
       int plus = Dice.randomDice();
       int curPos = this._p[turn].getCurPosition()+plus;
@@ -353,7 +363,8 @@ class Board {
       }
       else return false;
     }
-	  
+    
+    ///method ini berguna untuk memulai permainan
     void play(){
         bool flag = false;
         while(isStillPlayable()){
@@ -389,6 +400,7 @@ class Board {
         querySelector('#winner').text = this._winner.getName()+" WIN!";
     }
     
+    //method ini berguna untuk mengecek apakah permainan masih dapat dimainkan, bila sudah sampai finish maka akan mengeluarkan false
     bool isStillPlayable(){
         if(_p[0].getCurPosition()==100){
             _winner = _p[0];
