@@ -301,6 +301,7 @@ class Board {
             }
        }
     }
+    
     ///method ini berguna untuk merandom penempatan stair atau snake
     List<int> _randomize(Random rnd) {
         HashSet<int> set = new HashSet<int>();
@@ -400,7 +401,7 @@ class Board {
         querySelector('#winner').text = this._winner.getName()+" WIN!";
     }
     
-    //method ini berguna untuk mengecek apakah permainan masih dapat dimainkan, bila sudah sampai finish maka akan mengeluarkan false
+    ///method ini berguna untuk mengecek apakah permainan masih dapat dimainkan, bila sudah sampai finish maka akan mengeluarkan false
     bool isStillPlayable(){
         if(_p[0].getCurPosition()==100){
             _winner = _p[0];
@@ -414,6 +415,7 @@ class Board {
     }
 }
 
+///Method main.
 void main(){
    Board b = new Board(new HumanPlayer("",'o'),new HumanPlayer("",'x'));
    querySelector('#startButton').onClick.listen((_) => b=start(b));
@@ -422,6 +424,9 @@ void main(){
    if(b!=null)querySelector('#rollButton').onClick.listen((_) => turn = helper(b,turn));
 }
 
+///Method untuk merespond start button. Dibuat di luar kelas karena termasuk dalam kelas tester.
+///[b] Merupakan Board yang sedang dimainkan saat ini.
+///Mengembalikan Board beserta player-player yang bermain.
 Board start(Board b){
    bool cvc = false;
    Player p1;
@@ -456,6 +461,10 @@ Board start(Board b){
   return b;
 }
 
+///Method untuk merespond event onClick dari rollButton. Berada di luar kelas karena merupakan method dalam kelas tester.
+///[b] Board yang sedang dimainkan.
+///[turn] giliran saat ini.
+///Mengembalikan turn selanjutnya
 int helper(Board b,int turn){
   if(b.getP()[turn].getCurPosition()>0)querySelector(b.getId()[b.getP()[turn].getCurPosition()-1]).text = "";
   if(turn==0)querySelector("#cur").text = querySelector("#cur").text.substring(0,14)+" "+b.getP()[1].getName();
