@@ -75,9 +75,16 @@ class Dice {
     }
 }
 
+///Kelas abstract untuk menangani Ular dan Tangga.
 abstract class Teleporter {
+    
+    ///Atribut untuk mengetahui nomor urut pasangan Ular atau Tangga
     int _identifier;
+    
+    ///Atribut untuk mengetahui posisi awal dari ular atau tangga
     int _from;
+
+    ///Atribut untuk mengetahui posisi akhir ular atau tangga
     int _to;
     
     Teleporter(int from,int to,int identifier){
