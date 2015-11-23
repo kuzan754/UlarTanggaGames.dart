@@ -87,20 +87,27 @@ abstract class Teleporter {
     ///Atribut untuk mengetahui posisi akhir ular atau tangga
     int _to;
     
+    ///Constructor kelas Teleporter.
+    /// [from] merupakan posisi awal dari Ular atau Tangga.
+    /// [to] merupakan posisi akhir dari Ular atau Tangga.
+    /// [identifier] sebuah integer untuk mengetahui nomor urut pasangan Ular atau Tangga.
     Teleporter(int from,int to,int identifier){
         this._identifier = identifier;
         this._from = from;
         this._to = to;
     }
-
+    
+    ///Method getter untuk from.
     int getFrom() {
         return _from;
     }
 
+    ///Method getter untuk to.
     int getTo() {
         return _to;
     }
     
+    ///Method getter untuk identifier.
     int getIdentifier(){
         return _identifier;
     }
@@ -112,9 +119,9 @@ class Snake extends Teleporter{
     
     /// Constructor dari kelas Snake.
     /// COnstructor kelas Snake memanggil Constructor Kelas Teleporter(Super Classnya).
-    /// [from] merupakan nilai awal atau Kepala Ular.
-    /// [to] merupakan nilai akhir atau Ekor Ular.
-    /// [identifier] sebuah integer untuk mengetahui ular tersebut nomor berapa(Ular ke berapa dari jumlah yang ada);
+    /// [from] merupakan posisi awal Kepala Ular.
+    /// [to] merupakan posisi akhir Ular.
+    /// [identifier] sebuah integer untuk mengetahui nomor urut pasangan Ular.
     Snake(int from, int to,int identifier) : super(from, to,identifier);
 }
 
@@ -124,9 +131,9 @@ class Stair extends Teleporter{
     
     /// Constructor dari kelas Stair.
     /// Constructor kelas Stair memanggil Constructor Kelas Teleporter(Super Classnya).
-    /// [from] merupakan nilai awal atau titik awal tangga.
-    /// [to] merupakan nilai akhir atau titik akhir tangga.
-    /// [identifier] sebuah integer untuk mengetahui tangga tersebut nomor berapa(Tangga ke berapa dari jumlah yang ada);
+    /// [from] merupakan posisi awal tangga.
+    /// [to] merupakan posisi akhir tangga.
+    /// [identifier] sebuah integer untuk mengetahui nomor urut pasangan Tangga.
     Stair(int from, int to,int identifier) : super(from, to, identifier);
 }
 
@@ -228,7 +235,7 @@ class Board {
     List<Stair> _stairs = new List<Stair>();//array
     Player _winner;
   	
-  	Board.copy(Player p1, Player p2, Board oldB){
+    Board.copy(Player p1, Player p2, Board oldB){
       	this._p.add(p1);
       	this._p.add(p2);
       	querySelector("#fPlayer").text = querySelector("#fPlayer").text.substring(0,13)+" "+_p[0].getName();
@@ -242,6 +249,9 @@ class Board {
       	this._winner = oldB.getWinner();
     }
   
+    ///Constructor dari Kelas Board.
+    ///[p1] parameter bertipe Player sebagai player 1.
+    ///[p2] parameter bertipe Player sebagai player 2.
     Board(Player p1, Player p2) {
       	///inisialisasi id
       	for(int i=1;i<=100;i++){
@@ -299,26 +309,32 @@ class Board {
         return random;
     }
     
+    ///Getter untuk atribut _tiles.
     List<Tile> getTiles() {
         return _tiles;
     }
   
+    ///Getter untuk atribut _snakes.
     List<Snake> getSnakes(){
       	return this._snakes;
     }
   
+    ///Getter untuk atribut _stairs.
     List<Stair> getStairs(){
       	return this._stairs;
     }
   
+    ///Getter untuk atribut _winner.
     Player getWinner(){
       	return this._winner;
     }
   
+    ///Getter untuk atribut _boardId.
     List<String> getId(){
         return this._boardId;
     }
 
+    ///Getter untuk atribut _p.
     List<Player> getP() {
         return _p;
     }
