@@ -467,8 +467,6 @@ Board start(Board b){
 ///Mengembalikan turn selanjutnya
 int helper(Board b,int turn){
   if(b.getP()[turn].getCurPosition()>0)querySelector(b.getId()[b.getP()[turn].getCurPosition()-1]).text = "";
-  if(turn==0)querySelector("#cur").text = querySelector("#cur").text.substring(0,14)+" "+b.getP()[1].getName();
-  else querySelector("#cur").text = querySelector("#cur").text.substring(0,14)+" "+b.getP()[0].getName();
   bool isGetSix = b.movePlayer(turn);
   if(b.getP()[0].getCurPosition()>0)querySelector(b.getId()[b.getP()[0].getCurPosition()-1]).text = "o";
   if(b.getP()[1].getCurPosition()>0)querySelector(b.getId()[b.getP()[1].getCurPosition()-1]).text = "x";
@@ -478,6 +476,8 @@ int helper(Board b,int turn){
   else if(b.getP()[1].getCurPosition()==100){
     querySelector('#winner').text = b.getP()[1].getName()+" WIN!";
   }
+  if(turn==0)querySelector("#cur").text = querySelector("#cur").text.substring(0,14)+" "+b.getP()[1].getName();
+  else querySelector("#cur").text = querySelector("#cur").text.substring(0,14)+" "+b.getP()[0].getName();
   if(isGetSix==true)return turn;
   if(turn==0)return 1;
   else return 0;
